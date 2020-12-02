@@ -4,7 +4,7 @@
 namespace Bbrala\Advent\Day2;
 
 
-class PasswordValidatorFactory {
+class WrongPasswordValidatorFactory {
 
   public static array $validatorCache = [];
 
@@ -15,8 +15,8 @@ class PasswordValidatorFactory {
     }
 
     [$range, $letter] = explode(' ', $string);
-    [$firstPosition, $secondPosition] = explode('-', $range);
-    $passwordValidator = new PasswordValidator($letter, $firstPosition, $secondPosition);
+    [$min, $max] = explode('-', $range);
+    $passwordValidator = new WrongPasswordValidator($letter, $min, $max);
     self::$validatorCache[$string] = $passwordValidator;
 
     return $passwordValidator;

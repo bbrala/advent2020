@@ -2,29 +2,35 @@
 
 namespace Bbrala\Advent\Day2;
 
-class PasswordValidator {
+class PasswordValidator implements PasswordValidatorInterface {
 
-  private $letter;
+  private string $letter;
 
-  private $min;
+  private int $firstPosition;
 
-  private $max;
+  private int $secondPosition;
 
   /**
    * PasswordValidator constructor.
    *
    * @param string $letter
-   * @param int $min
-   * @param int $max
+   * @param int $firstPosition
+   * @param int $secondPosition
    */
-  public function __construct(string $letter, int $min, int $max) {
+  public function __construct(string $letter, int $firstPosition, int $secondPosition) {
     $this->letter = $letter;
-    $this->min = $min;
-    $this->max = $max;
+    $this->firstPosition = $firstPosition;
+    $this->secondPosition = $secondPosition;
   }
 
-  public function validate(string $password){
-    $letterOccurence = substr_count($password, $this->letter);
-    return ($letterOccurence >= $this->min && $letterOccurence <= $this->max);
+  public function validate(string $password) : bool {
+    $counter = 0;
+    if($password[$this->firstPosition-1] === $this->letter) {
+      $counter++;
+    }
+    if($password[$this->secondPosition-1] === $this->letter) {
+      $counter++;
+    }
+    return $counter === 1;
   }
 }
