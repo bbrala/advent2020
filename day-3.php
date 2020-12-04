@@ -60,4 +60,4 @@ $result *= $walker->count(5, 1);
 $result *= $walker->count(7, 1);
 $result *= $walker->count(1, 2);
 
-echo PHP_EOL . "Found: $result trees" . PHP_EOL;
+echo PHP_EOL . "Found: $result" . PHP_EOL;
